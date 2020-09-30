@@ -5,6 +5,9 @@
  */
 
 package face;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jary0160
@@ -27,31 +30,86 @@ face f;
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        btnmove = new javax.swing.JButton();
+        btnmood = new javax.swing.JButton();
+        btncolor = new javax.swing.JButton();
+        btnresize = new javax.swing.JButton();
+        facePanel = new javax.swing.JPanel();
+        jOptionPane1 = new javax.swing.JOptionPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Set Initial Face");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        btnmove.setText("Move Face");
+        btnmove.setName(""); // NOI18N
+
+        btnmood.setText("Resize Face");
+
+        btncolor.setText("Change Color");
+
+        btnresize.setText("Toggle Mood");
+
+        javax.swing.GroupLayout facePanelLayout = new javax.swing.GroupLayout(facePanel);
+        facePanel.setLayout(facePanelLayout);
+        facePanelLayout.setHorizontalGroup(
+            facePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(facePanelLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jOptionPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        facePanelLayout.setVerticalGroup(
+            facePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(facePanelLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jOptionPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(facePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btnmove)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnmood)
+                            .addGap(18, 18, 18)
+                            .addComponent(btncolor)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnresize)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnmove)
+                    .addComponent(btnmood)
+                    .addComponent(btncolor)
+                    .addComponent(btnresize))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(facePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -67,7 +125,13 @@ face f;
         f = new face(facePanel.getGraphics(), 50, 50);
         f.draw();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+        private void btnmoveActionPerformed(java.awt.event.ActionEvent evt) {       
+            int newx = Integer.parseInt(JOptionPane.showInputDialog(this,"Enter New X"));
+            int newy = Integer.parseInt(JOptionPane.showInputDialog(this,"Enter New Y"));
+            f.erase();
+            f.move(newx, newy);
+            f.draw();
+    }                                        
     /**
      * @param args the command line arguments
      */
@@ -104,6 +168,12 @@ face f;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncolor;
+    private javax.swing.JButton btnmood;
+    private javax.swing.JButton btnmove;
+    private javax.swing.JButton btnresize;
+    private javax.swing.JPanel facePanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JOptionPane jOptionPane1;
     // End of variables declaration//GEN-END:variables
 }
